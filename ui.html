@@ -1,0 +1,134 @@
+<style>
+  :root {
+    --border: #ddd;
+    --radius: 6px;
+  }
+
+  * {
+    font-family: Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  body {
+    margin: 0;
+  }
+
+  main header {
+    padding: 10px 16px;
+
+    border-bottom: 1px solid var(--border);
+
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+  }
+
+  main header span {
+    font-size: 12px;
+  }
+
+  main section {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+
+    padding: 10px 16px;
+  }
+
+  main section input {
+    width: 64px;
+  }
+
+  main section input,
+  main section select {
+    padding: 4px 8px;
+
+    margin-left: 10px;
+  }
+
+  main section input,
+  main section select,
+  main section button {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+
+    min-height: 32px;
+  }
+
+  main section button {
+    margin-right: auto;
+
+    cursor: pointer;
+
+    background-color: #fff;
+
+    padding: 4px 12px;
+  }
+
+  main section button:hover {
+    background-color: #000;
+    color: #fff;
+  }
+
+  main footer {
+    padding: 10px 16px;
+
+    border-top: 1px solid var(--border);
+
+    font-size: 12px;
+
+    text-align: center;
+  }
+
+  main footer span {
+    color: red;
+  }
+
+  main footer a {
+    text-decoration: none;
+  }
+</style>
+<main dir="rtl">
+  <header>
+    <span>لورم ایپسوم فارسی</span>
+  </header>
+
+  <section>
+    <input
+      placeholder="تعداد"
+      value="1"
+      min="1"
+      type="number"
+      name="count"
+      id="count"
+    />
+
+    <select id="type">
+      <option value="sentence">جمله</option>
+      <option value="paragraph">پاراگراف</option>
+      <option value="word">کلمه</option>
+    </select>
+
+    <button id="submit">ایجاد</button>
+  </section>
+
+  <footer>
+    طراحی شده با <span>قلب</span> توسط
+    <a id="sudo" href="https://github.com/iamnonroot">Root!</a>
+  </footer>
+</main>
+
+<script>
+  document.getElementById("submit").onclick = () => {
+    const count = document.getElementById("count").value,
+      type = document.getElementById("type").value;
+
+    parent.postMessage(
+      { pluginMessage: { event: "submit", type, count } },
+      "*"
+    );
+  };
+
+  document.getElementById("sudo").onclick = () => {
+    parent.postMessage({ pluginMessage: { event: "sudo" } }, "*");
+  };
+</script>
